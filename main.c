@@ -81,7 +81,7 @@ int main() {
     LinkedList wordsList;
     initializeList(&wordsList);
 
-    char word[MAX_WORD_LENGTH];
+    char word[MAX_WORD_LENGTH] = {0};
     int ch;
 
     while ((ch = fgetc(inputFile)) != EOF) {
