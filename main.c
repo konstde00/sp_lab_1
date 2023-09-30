@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdbool.h>
 
 #define MAX_WORD_LENGTH 30
 
@@ -46,17 +47,17 @@ void freeList(LinkedList *list) {
     list->tail = NULL;
 }
 
-int hasRepeatingLetters(const char *word) {
+bool hasRepeatingLetters(const char *word) {
     int seenChars[256] = {0};
 
     for (const char *ch = word; *ch != '\0'; ch++) {
         if (seenChars[(unsigned char)*ch]) {
-            return 1;
+            return true;
         }
         seenChars[(unsigned char)*ch] = 1;
     }
 
-    return 0;
+    return false;
 }
 
 void printWordsWithoutLetterRepetitions(LinkedList *words) {
@@ -67,7 +68,6 @@ void printWordsWithoutLetterRepetitions(LinkedList *words) {
         }
         current = current->next;
     }
-    printf("\n");
 }
 
 int main() {
@@ -81,7 +81,7 @@ int main() {
     LinkedList wordsList;
     initializeList(&wordsList);
 
-    char word[MAX_WORD_LENGTH] = {0};
+    char word[MAX_WORD_LENGTH];
     int ch;
 
     while ((ch = fgetc(inputFile)) != EOF) {
